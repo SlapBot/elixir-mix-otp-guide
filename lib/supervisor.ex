@@ -8,7 +8,7 @@ defmodule KV.Supervisor do
   @impl true
   def init(:ok) do
     children = [
-      KV.Registry
+      {KV.Registry, name: KV.Registry}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
