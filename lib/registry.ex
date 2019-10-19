@@ -12,10 +12,10 @@ defmodule KV.Registry do
   def start_link!(opts) do
     case start_link(opts) do
       {:ok, pid} -> pid
-      {:error, e} -> raise "Encountered error starting process #{__MODULE__}: #{inspect e}"
+      {:error, e} -> raise "Encountered error starting process #{__MODULE__}: #{inspect(e)}"
     end
   end
-  
+
   @doc """
   Looks up the bucket pid `name` stored in `server`.
 
@@ -47,6 +47,7 @@ defmodule KV.Registry do
     case lookup(names, name) do
       {:ok, pid} ->
         {:reply, pid, {names, refs}}
+
       :error ->
         {:ok, pid} = DynamicSupervisor.start_child(KV.BucketSupervisor, KV.Bucket)
         ref = Process.monitor(pid)
