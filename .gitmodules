@@ -1,0 +1,3 @@
+[submodule "apps/kv"]
+	path = apps/kv
+	url = https://github.com/slapbot/kv
